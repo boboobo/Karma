@@ -6,9 +6,9 @@ public class Player {
 	String name;
 	int money = 100;
 	int zen = 0;
-	Temple[] temples = new Temple[0];
-	Small_Temple[] small_temples = new Small_Temple[0];
-	int turn = 0;
+	Temple[] temples = new Temple[0];                      // Player has a List of Temple
+	Small_Temple[] small_temples = new Small_Temple[0];    // Player has a List of Small Temple
+	int turn;
 	
 	public Player(String name){
 		this.name = name;		
@@ -39,9 +39,9 @@ public class Player {
 		while(true){
 			try{
 			String name = scanner.nextLine();
-			System.out.printf("A big temple generates $15 and 5 zen each turn.%n"
+			System.out.printf("%nA big temple generates $15 and 5 zen each turn.%n"
 					+ "A small temple generates 3 zen each turn.%n"
-					+ "Do you want a big (-$70, press 1) or small (-$30, press 2) temple?%n");
+					+ "Do you want a big (-$70, press 1) or small (-$30, press 2) temple? %n");
 			
 			Scanner in = new Scanner(System.in);
 			int input = in.nextInt();
@@ -55,16 +55,8 @@ public class Player {
 					System.out.println("Not enough money.");
 					break;
 				}
-				player.money -= 70;
-				Temple[] tmp = new Temple[player.temples.length+1];
-				for(int i=0; i<player.temples.length; i++){
-					tmp[i] = player.temples[i];
-				}
-				player.temples = tmp;
-				player.temples[player.temples.length-1] = new Temple(name);
-				player.temples[player.temples.length-1].zen = 5;
-				player.temples[player.temples.length-1].money = 15;
-				
+				Temple tem = new Temple(name);
+				tem.buy(player);
 				break;
 			}
 			if(input==2){
@@ -72,15 +64,8 @@ public class Player {
 					System.out.println("Not enough money.");
 					break;
 				}
-				player.money -= 30;
-				Small_Temple[] tmp = new Small_Temple[player.small_temples.length+1];
-				for(int i=0; i<player.small_temples.length; i++){
-					tmp[i] = player.small_temples[i];
-				}
-				player.small_temples = tmp;
-				player.small_temples[player.small_temples.length-1] = new Small_Temple(name);
-				player.small_temples[player.small_temples.length-1].zen = 3;
-				
+				Small_Temple tem = new Small_Temple(name);
+				tem.buy(player);
 				break;
 			}
 			}
