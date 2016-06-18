@@ -6,21 +6,19 @@ public class Karma {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("What is your name?");
 		String name = scanner.nextLine();
-		
 		Player player = new Player(name);
 		
 		System.out.printf("Boss: %s. you were a good worker, I am sad you are leaving the company. Good luck on becoming a monk.%n", player.name);
-		
-		int turn;  
+
 		while(player.zen < 100){
 			try{
 				
-				System.out.printf("You have $%d and %d Zen points%n"
+				System.out.printf("%nYou have $%d and %d Zen points %n"
 						+ "What would you like to do?%n"
 						+ "Meditate 0$, +1 Zen -> Press 1%n"
 						+ "Help Someone -10$, +5 Zen -> Press 2%n"
 						+ "Work at Company +$50, -30 Zen -> Press 3%n"
-						+ "Purchase Temple -> Press 4%n", player.money, player.zen);
+						+ "Purchase Temple -> Press 4%n%n", player.money, player.zen);
 				
 				Scanner in = new Scanner(System.in);
 				int input = in.nextInt();
@@ -50,16 +48,12 @@ public class Karma {
 				continue;
 				
 			}
-			
-			
-			
 		}
-		
 		System.out.printf("Congrats, %s became a master monk in %d turns.%n",player.name, player.turn);
-		
 	}
 	
 	public static void Collecting(Player player){
+		System.out.println("");
 		System.out.println("Collecting from all temples...");
 		for(int i=0; i<player.temples.length; i++){
 			System.out.printf("Collecting $%d and %d Zen from %s%n",player.temples[i].money, player.temples[i].zen, player.temples[i].name);
