@@ -17,14 +17,15 @@ public class Karma {
 						+ "What would you like to do?%n"
 						+ "Meditate 0$, +1 Zen -> Press 1%n"
 						+ "Help Someone -10$, +5 Zen -> Press 2%n"
-						+ "Work at Company +$50, -30 Zen -> Press 3%n"
-						+ "Purchase Temple -> Press 4%n%n", player.money, player.zen);
+						+ "Work at Company +50$, -30 Zen -> Press 3%n"
+						+ "Purchase Temple -> Press 4%n"
+						+ "Gamble +?$, -20zen -> Press 5%n%n", player.money, player.zen);
 				
 				Scanner in = new Scanner(System.in);
 				int input = in.nextInt();
 				
-				if(input<0 || input>4){
-					System.out.println("Please input only 1~4");
+				if(input<0 || input>5){
+					System.out.println("Please input only 1~5");
 					continue;
 				}
 				
@@ -40,11 +41,14 @@ public class Karma {
 				if(input==4){
 					player.Purchase_Temple(player);
 				}
+				if(input==5){
+					player.Gamble(player);
+				}
 				Collecting(player);
 				
 			}
 			catch(InputMismatchException a){
-				System.out.println("Please input only 1~4");
+				System.out.println("Please input only 1~5");
 				continue;
 				
 			}
@@ -56,11 +60,23 @@ public class Karma {
 		System.out.println("");
 		System.out.println("Collecting from all temples...");
 		for(int i=0; i<player.temples.length; i++){
+			// If read all element of temples, then break the loop
+			if(player.temples[i] == null){
+				break;
+			}
+			
 			System.out.printf("Collecting $%d and %d Zen from %s%n",player.temples[i].money, player.temples[i].zen, player.temples[i].name);
+			
+			
 			player.money += player.temples[i].money;
 			player.zen += player.temples[i].zen;
 		}
 		for(int i=0; i<player.small_temples.length; i++){
+			// If read all element of small_temples, then break the loop
+			if(player.small_temples[i] == null){
+				break;
+			}
+			
 			System.out.printf("Collecting $%d and %d Zen from %s%n",player.small_temples[i].money, player.small_temples[i].zen, player.small_temples[i].name);
 			player.money += player.small_temples[i].money;
 			player.zen += player.small_temples[i].zen;
