@@ -20,7 +20,7 @@ public class Player {
 	}
 	
 	public void Help_Someone(Player player){
-		player.zen += 1;
+		player.zen += 5;
 		player.money -= 10;
 		player.turn += 1;
 	}
