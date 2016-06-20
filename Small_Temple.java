@@ -5,7 +5,7 @@ public class Small_Temple extends Temple{
 		super(name);
 	}
 	
-	//Overriding
+	@Override
 	public void buy(Player player){
 		player.money -= 30;
 		
